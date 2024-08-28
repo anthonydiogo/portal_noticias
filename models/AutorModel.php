@@ -27,5 +27,39 @@
 
             return $autores;
         }
+
+        public function delete() {
+            $autorDAO = new AutorDAO();
+
+            return $autorDAO->deleteAutor($this);
+        }
+
+        public function create() {
+            $autorDAO = new AutorDAO();
+
+            return $autorDAO->createAutor($this);
+        }
+
+        public function updateAutor() {
+            $autorDAO = new AutorDAO();
+
+            return $autorDAO->updateAutor($this);
+        }
+
+        public function deleteAutor() {
+            $autorDAO = new AutorDAO();
+
+            return $autorDAO->deleteAutor($this);
+        }
+
+        public function getAutor($idAutor) {
+            $autorDAO = new AutorDAO();
+
+            $autor = $autorDAO->getAutor($idAutor);
+
+            $autor = new AutorModel($autor['idAutor'], $autor['nomeAutor']);
+
+            return $autor;
+        }
     }
 ?>

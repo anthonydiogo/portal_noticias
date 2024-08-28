@@ -89,8 +89,21 @@
             ]);
         }
 
+        public function getNoticia() {
+            $dados = json_decode(file_get_contents('php://input'), true);
+
+            if (empty($dados['idNoticia']))
+                return $this->mostrarError('Voce deve informar o idNoticia!');
+
+            $response = (new NoticiaModel())->getNoticia($dados['idNoticia']);
+
+            return json_encode([
+                'error' => null,
+                'result' => $response
+            ]);
+        }
+
         private function mostrarError(string $mensagem) {
-            if (empty($_POST['idAutor'])) 
                 return json_encode([
                     'error' => $mensagem,
                     'result' => null

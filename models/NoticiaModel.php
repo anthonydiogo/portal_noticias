@@ -57,5 +57,21 @@
 
             return $noticiaDAO->deleteNoticia($this);
         }
+
+        public function getNoticia($idNoticia) {
+            $noticiaDAO = new NoticiaDAO();
+
+            $noticia = $noticiaDAO->getNoticia($idNoticia);
+
+            $noticia = new NoticiaModel(
+                $noticia['idNoticia'], 
+                $noticia['idAutor'],
+                $noticia['tituloNoticia'],
+                $noticia['conteudoNoticia'],
+                $noticia['imagemNoticia']
+            );
+
+            return $noticia;
+        }
     }
 ?>

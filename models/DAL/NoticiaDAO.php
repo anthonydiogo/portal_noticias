@@ -53,5 +53,17 @@
 
             return $stmt->execute();
         } 
+
+        public function getNoticia($idNoticia) {
+            $conexao = (new Conexao())->getConexao();
+
+            $sql = "SELECT * FROM noticia WHERE idNoticia = :id;";
+
+            $stmt = $conexao->prepare($sql);
+            $stmt->bindParam(':id', $idNoticia);
+            $stmt->execute();
+            
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
     }
 ?>
